@@ -58,7 +58,7 @@ def plot_conditional_likelihood(model, context_x, context_y, x_range=[-5., 5.], 
     XX, YY = np.meshgrid(xx,yy)
     x_q = XX.flatten().reshape([1,-1,1])
     y_q = YY.flatten().reshape([1,-1,1])
-    y_q = np.concatenate([y_q, np.random.randn( *(1, XX.flatten().shape[0], num_aux) )], axis=-1)
+    y_q = np.concatenate([y_q, 0.0*np.random.randn( *(1, XX.flatten().shape[0], num_aux) )], axis=-1)
     
     probs = model.get_likelihood(context_x, context_y, x_q, y_q)
     ZZ = probs.reshape([N,N])
